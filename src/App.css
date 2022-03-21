@@ -1,0 +1,132 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.App-header {
+  background-color: #555e70;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: rgb(219, 217, 217);
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.Canvas_Background {
+  background-color: aliceblue;
+}
+
+.Canvas_Container {
+  background-color: rgb(201, 209, 216);
+  color: #282c34;
+}
+
+.distributionSetting {
+  color: #000000;
+  margin-bottom: 1cm;
+}
+
+.legend {
+  margin-top: 2px;
+  display: flex;
+}
+
+.legend_colour_pick {
+  min-width: 0.5cm;
+  min-height: 0.5cm;
+  max-width: 0.5cm;
+  max-height: 0.5cm;
+  margin-bottom: 0.05cm;
+  margin-left: 0.05cm;
+  margin-right: 0.08cm;
+}
+
+.legend_colour_text {
+  padding-top: 0.05cm;
+  margin-top: 0cm;
+  margin-bottom: 0cm;
+  font-size: 0.3cm;
+  margin-right: 0.08cm;
+}
+
+.Add_Segment_Button {
+  margin-bottom: 25px;
+}
+
+.segment_form {
+  margin-right: 10px;
+  font-size: 15px;
+}
+
+.segment_form__Used {
+  margin-right: 10px;
+  font-size: 15px;
+  pointer-events: none;
+  opacity: 30%;
+}
+
+.segment_form__container {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.segment_form__color_Picker {
+  max-height: 22px;
+}
+
+.segment_form__Delete_Button {
+  max-height: 22px;
+  margin-right: 5px;
+}
+
+.segment_form__Label {
+  color: aliceblue;
+  font-size: 15px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.segment_form__Submit {
+  margin-left: 10px;
+}
+
+.segment_form__Input {
+  margin-right: 10px;
+}
+
+.segment_form__Input__USED {
+  visibility: hidden;
+}
+
+.Switch_Mode_Button__3D {
+  background-color: rgb(152, 236, 204);
+}
+
+.Switch_Mode_Button__2_5D {
+  background-color: rgb(256, 92, 164);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
