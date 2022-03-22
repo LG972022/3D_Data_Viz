@@ -1,18 +1,12 @@
-import { Canvas } from "@react-three/fiber";
-import {
-  OrbitControls,
-  Text,
-  PerspectiveCamera,
-  Segment,
-} from "@react-three/drei";
+import React from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { OrbitControls, Text, PerspectiveCamera } from "@react-three/drei";
+import { useSpring, animated } from "@react-spring/three";
 import Blue from "../Colour_Imgs/Blue.png";
 import Pink from "../Colour_Imgs/Pink.png";
 import Green from "../Colour_Imgs/Green.png";
 
 function ShowCanvas({ segmentArray, modeSelected }) {
-  console.log(segmentArray);
-  console.log(modeSelected);
-
   function MakeBox(props) {
     return (
       <mesh position={props.positionCoords} scale={props.scale}>
@@ -38,30 +32,73 @@ function ShowCanvas({ segmentArray, modeSelected }) {
           <ambientLight />
           <pointLight position={[10, 10, 10]} />
           <pointLight intensity={0.3} position={[0, 5, -20]} visible={true} />
-          {segmentArray.map((segment, index) => {
-            return (
-              <mesh key={index}>
-                <MakeBox
-                  positionCoords={[index * 5, 0, 0]}
-                  colour={segment.segmentColour}
-                  scale={[
-                    Math.cbrt(segment.percentageNum),
-                    Math.cbrt(segment.percentageNum),
-                    Math.cbrt(segment.percentageNum),
-                  ]}
-                />
-                <Text
-                  scale={[3, 3, 3]}
-                  color="black" // default
-                  anchorX="center" // default
-                  anchorY="middle" // default
-                  position={[index * 5, 0, 2.5]}
-                >
-                  Metric {index}
-                </Text>
-              </mesh>
-            );
-          })}
+          {modeSelected === "3D"
+            ? segmentArray.map((segment, index) => {
+                return (
+                  <mesh key={index}>
+                    <MakeBox
+                      positionCoords={[index * 5.5, 0, 0]}
+                      colour={segment.segmentColour}
+                      scale={[
+                        Math.cbrt(segment.percentageNum),
+                        Math.cbrt(segment.percentageNum),
+                        Math.cbrt(segment.percentageNum),
+                      ]}
+                    />
+                    <Text
+                      scale={[3, 3, 3]}
+                      color="black" // default
+                      anchorX="center" // default
+                      anchorY="middle" // default
+                      position={[index * 5.5, 0, 2.5]}
+                    >
+                      Metric {index}
+                    </Text>
+                    <Text
+                      scale={[3, 3, 3]}
+                      color="black" // default
+                      anchorX="center" // default
+                      anchorY="middle" // default
+                      position={[index * 5.5, -0.3, 2.5]}
+                    >
+                      {segment.percentageNum + "%"}
+                    </Text>
+                  </mesh>
+                );
+              })
+            : segmentArray.map((segment, index) => {
+                return (
+                  <mesh key={index}>
+                    <MakeBox
+                      positionCoords={[index * 5, 0, 0]}
+                      colour={segment.segmentColour}
+                      scale={[
+                        Math.sqrt(segment.percentageNum) / 2,
+                        Math.sqrt(segment.percentageNum) / 2,
+                        1,
+                      ]}
+                    />
+                    <Text
+                      scale={[3, 3, 3]}
+                      color="black" // default
+                      anchorX="center" // default
+                      anchorY="middle" // default
+                      position={[index * 5, 0, 0.75]}
+                    >
+                      Metric {index}
+                    </Text>
+                    <Text
+                      scale={[3, 3, 3]}
+                      color="black" // default
+                      anchorX="center" // default
+                      anchorY="middle" // default
+                      position={[index * 5, -0.3, 0.75]}
+                    >
+                      {segment.percentageNum + "%"}
+                    </Text>
+                  </mesh>
+                );
+              })}
         </Canvas>
       </div>
       <div className="legend">

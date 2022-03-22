@@ -96,6 +96,15 @@ function DistributionSetting() {
     }
   }
 
+  function getRandomColor() {
+    const letters = "0123456789ABCDEF";
+    let color = "#";
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
+
   return (
     <>
       <div className="distributionSetting">
@@ -136,7 +145,7 @@ function DistributionSetting() {
                 <input
                   type="color"
                   className="segment_form__color_Picker"
-                  defaultValue={"#61dafb"}
+                  defaultValue={getRandomColor()}
                 />
                 <input
                   type="submit"
