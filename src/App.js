@@ -1,4 +1,5 @@
 import logo from "./logo.svg";
+import React from "react";
 import "./App.css";
 import DistributionSetting from "./Components/DistributionSetting";
 
@@ -7,7 +8,9 @@ function App() {
     <div className="App">
       <header className="App-header">
         {/* <h1>Hello</h1> */}
-        <DistributionSetting />
+        <React.Suspense fallback={<div>Loading... </div>}>
+          <DistributionSetting />
+        </React.Suspense>
       </header>
     </div>
   );

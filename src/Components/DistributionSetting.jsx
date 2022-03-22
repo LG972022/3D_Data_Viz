@@ -133,7 +133,11 @@ function DistributionSetting() {
                   max={100}
                   min={1}
                 />
-                <input type="color" className="segment_form__color_Picker" />
+                <input
+                  type="color"
+                  className="segment_form__color_Picker"
+                  defaultValue={"#61dafb"}
+                />
                 <input
                   type="submit"
                   value="Submit"
@@ -160,7 +164,7 @@ function DistributionSetting() {
         })}
       </div>
       <div>
-        {/* <ShowCanvas segmentArray={segmentArray} modeSelected={modeSelected} /> */}
+        <ShowCanvas segmentArray={segmentArray} modeSelected={modeSelected} />
       </div>
     </>
   );

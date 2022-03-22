@@ -1,12 +1,17 @@
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
+import {
+  OrbitControls,
+  Text,
+  PerspectiveCamera,
+  Segment,
+} from "@react-three/drei";
 import Blue from "../Colour_Imgs/Blue.png";
 import Pink from "../Colour_Imgs/Pink.png";
 import Green from "../Colour_Imgs/Green.png";
 
 function ShowCanvas({ segmentArray, modeSelected }) {
-  // console.log(segmentArray);
-  // console.log(modeSelected);
+  console.log(segmentArray);
+  console.log(modeSelected);
 
   function MakeBox(props) {
     return (
@@ -23,11 +28,8 @@ function ShowCanvas({ segmentArray, modeSelected }) {
   return (
     <div className="Canvas_Container">
       <div className="Canvas_Background">
-        <Canvas
-          style={{ width: "25vw", height: "50vh" }}
-          camera={{ zoom: 12, position: [0, 10, -50] }}
-        >
-          {/* <PerspectiveCamera makeDefault position={[-1, 1, 5]} /> */}
+        <Canvas style={{ width: "45vw", height: "50vh" }}>
+          <PerspectiveCamera makeDefault position={[-1, 1, 15]} />
           <OrbitControls
             enablePan={true}
             enableZoom={true}
@@ -36,44 +38,30 @@ function ShowCanvas({ segmentArray, modeSelected }) {
           <ambientLight />
           <pointLight position={[10, 10, 10]} />
           <pointLight intensity={0.3} position={[0, 5, -20]} visible={true} />
-          {/* <ambientLight intensity={0.3} /> */}
-
-          <MakeBox
-            positionCoords={[-1, 0, 0]}
-            // key={index}
-            colour="#3A76DD"
-            scale={[Math.cbrt(10), Math.cbrt(10), Math.cbrt(10)]}
-          />
-          <MakeBox
-            positionCoords={[-5, 0, 0]}
-            // key={index}
-            colour="#3A76DD"
-            scale={[Math.cbrt(20), Math.cbrt(20), Math.cbrt(20)]}
-          />
-          <MakeBox
-            positionCoords={[-10, 0, 0]}
-            // key={index}
-            colour="#3A76DD"
-            scale={[Math.cbrt(30), Math.cbrt(30), Math.cbrt(30)]}
-          />
-          <MakeBox
-            positionCoords={[-15, 0, 0]}
-            // key={index}
-            colour="#3A76DD"
-            scale={[Math.cbrt(40), Math.cbrt(40), Math.cbrt(40)]}
-          />
-          <MakeBox
-            positionCoords={[-20, 0, 0]}
-            // key={index}
-            colour="#3A76DD"
-            scale={[Math.cbrt(50), Math.cbrt(50), Math.cbrt(50)]}
-          />
-          <MakeBox
-            positionCoords={[-25, 0, 0]}
-            // key={index}
-            colour="#3A76DD"
-            scale={[Math.cbrt(99), Math.cbrt(99), Math.cbrt(99)]}
-          />
+          {segmentArray.map((segment, index) => {
+            return (
+              <mesh key={index}>
+                <MakeBox
+                  positionCoords={[index * 5, 0, 0]}
+                  colour={segment.segmentColour}
+                  scale={[
+                    Math.cbrt(segment.percentageNum),
+                    Math.cbrt(segment.percentageNum),
+                    Math.cbrt(segment.percentageNum),
+                  ]}
+                />
+                <Text
+                  scale={[3, 3, 3]}
+                  color="black" // default
+                  anchorX="center" // default
+                  anchorY="middle" // default
+                  position={[index * 5, 0, 2.5]}
+                >
+                  Metric {index}
+                </Text>
+              </mesh>
+            );
+          })}
         </Canvas>
       </div>
       <div className="legend">
@@ -89,29 +77,3 @@ function ShowCanvas({ segmentArray, modeSelected }) {
 }
 
 export default ShowCanvas;
-// <MakeBox
-//   positionCoords={[1, 0, 0]}
-//   colour="#3A76DD"
-//   scale={[1, 1, 1]}
-// />
-// <MakeBox
-//   positionCoords={[-1, 0, 0]}
-//   colour="#58e0af"
-//   scale={[1, 1, 1]}
-// />
-// <MakeBox
-//   positionCoords={[-2, 0, 0]}
-//   colour="#F85AA3"
-//   scale={[1, 1, 1]}
-// />
-
-/* {segmentArray.map((segment, index) => {
-            return (
-              <MakeBox
-                positionCoords={[segment / 100, 0, 0]}
-                key={index}
-                colour="#3A76DD"
-                scale={[segment / 100, segment / 100, segment / 100]}
-              />
-            );
-          })} */
