@@ -5,35 +5,18 @@ function DistributionSetting() {
   const [segmentArray, setSegmentArray] = useState([]);
   const [formArray, setFormArray] = useState([]);
   const [totalWillExceedWarning, setTotalWillExceedWarning] = useState(false);
+  const [unsubmittedFormExists, setUnsubmittedFormExists] = useState(false);
   const [modeSelected, setModeSelected] = useState("3D");
 
   function addToFormArr(thing) {
-    setFormArray((currentFormArray) => {
-      const updatedFormArr = [...currentFormArray];
-      updatedFormArr.push(thing);
-      return updatedFormArr;
-    });
-  }
-
-  function removeFromAllArr(index) {
-    setFormArray((currentFormArray) => {
-      const updatedFormArr = [...currentFormArray];
-      updatedFormArr.splice(index, 1);
-      return updatedFormArr;
-    });
-    setSegmentArray((currentSegmentArray) => {
-      const updatedSegmentArr = [...currentSegmentArray];
-      updatedSegmentArr.splice(index, 1);
-      return updatedSegmentArr;
-    });
-  }
-
-  function checkFunctionTotal() {
-    let totalVar = 0;
-    for (let x = 0; x < segmentArray.length; x++) {
-      totalVar += segmentArray[x].percentageNum;
+    if (unsubmittedFormExists === false) {
+      setFormArray((currentFormArray) => {
+        const updatedFormArr = [...currentFormArray];
+        updatedFormArr.push(thing);
+        return updatedFormArr;
+      });
+      setUnsubmittedFormExists(true);
     }
-    return totalVar;
   }
 
   function addToSegmentArray(segment) {
@@ -42,6 +25,45 @@ function DistributionSetting() {
       updatedSegmentArr.push(segment);
       return updatedSegmentArr;
     });
+  }
+
+  function generateClassName__AddSegmentButton() {
+    if (unsubmittedFormExists === true) {
+      return "Add_Segment_Button__Suspended";
+    } else if (unsubmittedFormExists === false) {
+      return "Add_Segment_Button";
+    }
+  }
+
+  function generateClassName__segment_form__Delete_Button() {
+    if (unsubmittedFormExists === true) {
+      return "segment_form__Delete_Button__Suspended";
+    } else if (unsubmittedFormExists === false) {
+      return "segment_form__Delete_Button";
+    }
+  }
+
+  function removeFromAllArr(index) {
+    if (unsubmittedFormExists === false) {
+      setFormArray((currentFormArray) => {
+        const updatedFormArr = [...currentFormArray];
+        updatedFormArr.splice(index, 1);
+        return updatedFormArr;
+      });
+      setSegmentArray((currentSegmentArray) => {
+        const updatedSegmentArr = [...currentSegmentArray];
+        updatedSegmentArr.splice(index, 1);
+        return updatedSegmentArr;
+      });
+    }
+  }
+
+  function checkCurrentTotal() {
+    let totalVar = 0;
+    for (let x = 0; x < segmentArray.length; x++) {
+      totalVar += segmentArray[x].percentageNum;
+    }
+    return totalVar;
   }
 
   function switchModeSelected(event) {
@@ -60,9 +82,9 @@ function DistributionSetting() {
     event.preventDefault();
     if (Number(event.target[0].value) === 0) {
       return;
-    } else if (checkFunctionTotal() + Number(event.target[0].value) > 100) {
+    } else if (checkCurrentTotal() + Number(event.target[0].value) > 100) {
       setTotalWillExceedWarning(true);
-    } else if (checkFunctionTotal() + Number(event.target[0].value) <= 100) {
+    } else if (checkCurrentTotal() + Number(event.target[0].value) <= 100) {
       setTotalWillExceedWarning(false);
       event.target.childNodes[1].className = "segment_form__Input__USED";
       event.target.className = "segment_form__Used";
@@ -70,20 +92,20 @@ function DistributionSetting() {
         percentageNum: Number(event.target[0].value),
         segmentColour: event.target[1].value,
       });
+      setUnsubmittedFormExists(false);
     }
   }
-  console.log(segmentArray);
 
   return (
     <>
       <div className="distributionSetting">
-        <p>Total: {checkFunctionTotal()}</p>
+        <p>Total: {checkCurrentTotal()}</p>
         {totalWillExceedWarning === true && (
           <p>Total Percentage Must Not Exceed 100%</p>
         )}
 
         <button
-          className="Add_Segment_Button"
+          className={generateClassName__AddSegmentButton()}
           onClick={() => {
             addToFormArr({ distValue: 100 });
           }}
@@ -122,7 +144,7 @@ function DistributionSetting() {
                 onClick={() => {
                   removeFromAllArr(index);
                 }}
-                className="segment_form__Delete_Button"
+                className={generateClassName__segment_form__Delete_Button()}
               >
                 Delete Metric
               </button>

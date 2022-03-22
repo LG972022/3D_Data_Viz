@@ -8,7 +8,7 @@
 }
 
 .App-header {
-  background-color: #555e70;
+  background-color: #dbdbdb;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -63,6 +63,11 @@
   margin-bottom: 25px;
 }
 
+.Add_Segment_Button__Suspended {
+  margin-bottom: 25px;
+  opacity: 30%;
+}
+
 .segment_form {
   margin-right: 10px;
   font-size: 15px;
@@ -78,6 +83,9 @@
 .segment_form__container {
   display: flex;
   margin-bottom: 20px;
+  background-color: #3a76dd;
+  padding: 20px;
+  border-radius: 15px;
 }
 
 .segment_form__color_Picker {
@@ -87,6 +95,12 @@
 .segment_form__Delete_Button {
   max-height: 22px;
   margin-right: 5px;
+}
+
+.segment_form__Delete_Button__Suspended {
+  max-height: 22px;
+  margin-right: 5px;
+  opacity: 30%;
 }
 
 .segment_form__Label {
