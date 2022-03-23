@@ -21,6 +21,7 @@ function ShowCanvas({ segmentArray }) {
 
   function AdaptiveBox(props) {
     const [modeSelected, setModeSelected] = useState("3D");
+
     function switchModeSelected(event) {
       setModeSelected((currentModeSelected) => {
         if (currentModeSelected === "3D") {
@@ -36,15 +37,15 @@ function ShowCanvas({ segmentArray }) {
     const myMesh = React.useRef();
 
     const { scale } = useSpring({
-      scale: modeSelected === "3D" ? props.scale[0] : props.scale[1],
+      scale: modeSelected === "3D" ? props.boxScale[0] : props.boxScale[1],
       config: config.wobbly,
     });
 
     const { position } = useSpring({
       position:
         modeSelected === "3D"
-          ? props.positionCoords[0]
-          : props.positionCoords[1],
+          ? props.boxPositionCoords[0]
+          : props.boxPositionCoords[1],
       config: config.wobbly,
     });
 
@@ -74,16 +75,17 @@ function ShowCanvas({ segmentArray }) {
           <ambientLight />
           <pointLight position={[10, 10, 10]} />
           <pointLight intensity={0.3} position={[0, 5, -20]} visible={true} />
+
           {segmentArray.map((segment, index) => {
             return (
               <mesh key={index}>
                 <AdaptiveBox
-                  positionCoords={[
+                  boxPositionCoords={[
                     [index * 5.5, 0, 0],
                     [index * 5, 0, 0],
                   ]}
                   colour={segment.segmentColour}
-                  scale={[
+                  boxScale={[
                     [
                       Math.cbrt(segment.percentageNum),
                       Math.cbrt(segment.percentageNum),
