@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Text, PerspectiveCamera } from "@react-three/drei";
 import { useSpring, animated } from "@react-spring/three";
@@ -6,7 +6,21 @@ import Blue from "../Colour_Imgs/Blue.png";
 import Pink from "../Colour_Imgs/Pink.png";
 import Green from "../Colour_Imgs/Green.png";
 
-function ShowCanvas({ segmentArray, modeSelected }) {
+function ShowCanvas({ segmentArray }) {
+  const [modeSelected, setModeSelected] = useState("3D");
+
+  function switchModeSelected(event) {
+    setModeSelected((currentModeSelected) => {
+      if (currentModeSelected === "3D") {
+        event.target.className = "Switch_Mode_Button__2_5D";
+        return "2.5D";
+      } else if (currentModeSelected === "2.5D") {
+        event.target.className = "Switch_Mode_Button__3D";
+        return "3D";
+      }
+    });
+  }
+
   function MakeBox(props) {
     return (
       <mesh position={props.positionCoords} scale={props.scale}>
@@ -21,6 +35,9 @@ function ShowCanvas({ segmentArray, modeSelected }) {
 
   return (
     <div className="Canvas_Container">
+      <button className="Switch_Mode_Button__3D" onClick={switchModeSelected}>
+        {modeSelected}
+      </button>
       <div className="Canvas_Background">
         <Canvas style={{ width: "45vw", height: "50vh" }}>
           <PerspectiveCamera makeDefault position={[-1, 1, 15]} />

@@ -124,10 +124,12 @@
 
 .Switch_Mode_Button__3D {
   background-color: rgb(152, 236, 204);
+  margin-bottom: 10pt;
 }
 
 .Switch_Mode_Button__2_5D {
   background-color: rgb(256, 92, 164);
+  margin-bottom: 10pt;
 }
 
 @media (prefers-reduced-motion: no-preference) {

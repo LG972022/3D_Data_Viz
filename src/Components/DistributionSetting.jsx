@@ -1,12 +1,11 @@
 import { useState } from "react";
-import ShowCanvas from "./ShowCanvas";
+import AnimShowCanvas from "./AnimShowCanvas";
 
 function DistributionSetting() {
   const [segmentArray, setSegmentArray] = useState([]);
   const [formArray, setFormArray] = useState([]);
   const [totalWillExceedWarning, setTotalWillExceedWarning] = useState(false);
   const [unsubmittedFormExists, setUnsubmittedFormExists] = useState(false);
-  const [modeSelected, setModeSelected] = useState("3D");
 
   function addToFormArr(thing) {
     if (unsubmittedFormExists === false) {
@@ -66,18 +65,6 @@ function DistributionSetting() {
     return totalVar;
   }
 
-  function switchModeSelected(event) {
-    setModeSelected((currentModeSelected) => {
-      if (currentModeSelected === "3D") {
-        event.target.className = "Switch_Mode_Button__2_5D";
-        return "2.5D";
-      } else if (currentModeSelected === "2.5D") {
-        event.target.className = "Switch_Mode_Button__3D";
-        return "3D";
-      }
-    });
-  }
-
   function handleSubmit(event) {
     event.preventDefault();
     if (Number(event.target[0].value) === 0) {
@@ -120,9 +107,6 @@ function DistributionSetting() {
           }}
         >
           Add New Segment
-        </button>
-        <button className="Switch_Mode_Button__3D" onClick={switchModeSelected}>
-          {modeSelected}
         </button>
         {formArray.map((segment, index) => {
           return (
@@ -173,7 +157,7 @@ function DistributionSetting() {
         })}
       </div>
       <div>
-        <ShowCanvas segmentArray={segmentArray} modeSelected={modeSelected} />
+        <AnimShowCanvas segmentArray={segmentArray} />
       </div>
     </>
   );
