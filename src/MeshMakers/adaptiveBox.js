@@ -6,43 +6,45 @@ function AnimBox(props) {
   const myMesh = React.useRef();
   const [active, setActive] = useState(true);
 
-  const scaleSpring = useSpring({
+  const spring = useSpring({
     scale: active ? props.boxScale[0] : props.boxScale[1],
-    config: config.wobbly,
-  });
-
-  const positionSpring = useSpring({
     position: active ? props.positionCoords[0] : props.positionCoords[1],
+    color: active ? props.colour[0] : props.colour[1],
+    opacity: active ? 1 : 0.1,
     config: config.wobbly,
   });
 
-  // const colourSpring = useSpring({
-  //   colour: active ? props.positionCoords[0] : props.positionCoords[1],
-  //   config: config.wobbly,
-  // });
-
-  // const [{ rotation }, setSpring] = useSpring(() => ({
-  //   rotation: [0, 0, 0],
-  // }));
-
-  //   useFrame(({ clock }) => {
-  //     const a = clock.getElapsedTime();
-  //     myMesh.current.rotation.x = a;
-  //   });
+  // return (
+  //   <mesh
+  //     position={props.positionCoords[0]}
+  //     scale={props.boxScale[0]}
+  //     rotation={[0, 0, 0]}
+  //     ref={myMesh}
+  //     onClick={() => {
+  //       console.log("click");
+  //       setActive(!active);
+  //     }}
+  //   >
+  //     <boxGeometry />
+  //     <meshLambertMaterial color={props.colour[0]} transparent opacity={0.7} />
+  //   </mesh>
+  // );
 
   return (
     <animated.mesh
-      position={positionSpring.position}
-      scale={scaleSpring.scale}
-      // rotation={[0, 1, 1]}
       ref={myMesh}
+      position={spring.position}
+      scale={spring.scale}
       onClick={() => {
-        console.log("click");
         setActive(!active);
       }}
     >
       <boxGeometry />
-      <meshStandardMaterial color={props.colour[1]} />
+
+      <animated.meshLambertMaterial
+        opacity={spring.opacity}
+        color={spring.color}
+      />
     </animated.mesh>
   );
 }

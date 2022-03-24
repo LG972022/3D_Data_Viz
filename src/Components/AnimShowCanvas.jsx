@@ -46,10 +46,10 @@ function AnimShowCanvas({ segmentArray }) {
           /> */}
           <AnimBox
             positionCoords={[
-              [1 * 5.5, 5, 0],
-              [1 * 5.5, 0, 0],
+              [0 * 5, 0, 0],
+              [0 * 5.5, 0, 0],
             ]}
-            colour={["red", "yellow"]}
+            colour={["#6246ea", "#e45858"]}
             boxScale={[
               [Math.cbrt(40), Math.cbrt(40), Math.cbrt(40)],
               [Math.sqrt(40) / 2, Math.sqrt(40) / 2, 1],
