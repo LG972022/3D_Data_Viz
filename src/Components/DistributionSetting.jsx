@@ -117,7 +117,7 @@ function DistributionSetting() {
                 className="segment_form"
               >
                 <label className="segment_form__Label">
-                  Metric Percentage {index}
+                  Metric Percentage {index + 1}
                 </label>
                 <input
                   type="number"

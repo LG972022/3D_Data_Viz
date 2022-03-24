@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useFrame } from "@react-three/fiber";
 import { Text } from "@react-three/drei";
 import { useSpring, animated, config } from "@react-spring/three";
@@ -6,6 +6,13 @@ import { useSpring, animated, config } from "@react-spring/three";
 function AnimBox(props) {
   const myMesh = React.useRef();
   const [modeSelected, setModeSelected] = useState("3D");
+  const [inIntro, setInIntro] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setInIntro(false);
+    }, 900);
+  }, []);
 
   function switchModeSelected(event) {
     setModeSelected((currentModeSelected) => {
@@ -30,6 +37,20 @@ function AnimBox(props) {
     config: config.wobbly,
   });
 
+  const spawnSpring = useSpring({
+    to: { scale: props.boxScale[0] },
+    from: { scale: [0, 0, 0] },
+    config: config.wobbly,
+  });
+
+  function getCurrentSpring() {
+    if (inIntro === true) {
+      return spawnSpring;
+    } else if (inIntro === false) {
+      return spring;
+    }
+  }
+
   // return (
   //   <mesh
   //     position={props.positionCoords[0]}
@@ -50,7 +71,7 @@ function AnimBox(props) {
     <animated.mesh
       ref={myMesh}
       position={spring.boxPosition}
-      scale={spring.scale}
+      scale={getCurrentSpring().scale}
       onClick={switchModeSelected}
     >
       <boxGeometry onClick={switchModeSelected} />
@@ -65,7 +86,7 @@ function AnimBox(props) {
         color="black" // default
         position={[0, 0.05, 0.6]}
       >
-        {" Metric" + 1}
+        {"Metric " + props.text1Content}
       </Text>
       <Text
         onClick={switchModeSelected}
@@ -73,7 +94,7 @@ function AnimBox(props) {
         color="black" // default
         position={[0, -0.1, 0.6]}
       >
-        {40 + "%"}
+        {props.text2Content + "%"}
       </Text>
     </animated.mesh>
   );

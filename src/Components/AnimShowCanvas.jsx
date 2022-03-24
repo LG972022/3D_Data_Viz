@@ -6,25 +6,17 @@ import { useSpring, animated, config } from "@react-spring/three";
 import AnimBox from "../MeshMakers/adaptiveBox";
 
 function AnimShowCanvas({ segmentArray }) {
-  const [modeSelected, setModeSelected] = useState("3D");
+  const [in3DMode, setIn3DMode] = useState("3D");
 
-  function switchModeSelected(event) {
-    setModeSelected((currentModeSelected) => {
-      if (currentModeSelected === "3D") {
-        event.target.className = "Switch_Mode_Button__2_5D";
-        return "2.5D";
-      } else if (currentModeSelected === "2.5D") {
-        event.target.className = "Switch_Mode_Button__3D";
-        return "3D";
-      }
-    });
-  }
+  console.log(segmentArray);
 
   return (
     <div className="Canvas_Container">
       <div className="Canvas_Background">
+        <button>Press Me</button>
         <Canvas style={{ width: "45vw", height: "50vh" }}>
           {/* /////////////////////////////////////////////////////////////// */}
+
           <PerspectiveCamera makeDefault position={[-1, 1, 15]} />
           <OrbitControls
             enablePan={true}
@@ -34,49 +26,33 @@ function AnimShowCanvas({ segmentArray }) {
           <ambientLight />
           <pointLight position={[10, 10, 10]} />
           <pointLight intensity={0.3} position={[0, 5, -20]} visible={true} />
-          {/* /////////////////////////////////////////////////////////////// */}
-          {/* <AnimBox
-            positionCoords={[0 * 5.5, 0, 0]}
-            rotation={[100, 160]}
-            colour={["yellow", "blue"]}
-            boxScale={[
-              [Math.cbrt(70), Math.cbrt(70), Math.cbrt(70)],
-              [Math.sqrt(70) / 2, Math.sqrt(70) / 2, 1],
-            ]}
-          /> */}
-          <AnimBox
-            boxPositionCoords={[
-              [0 * 5, 0, 0],
-              [0 * 5.5, 0, 0],
-            ]}
-            colour={["#6246ea", "#e45858"]}
-            boxScale={[
-              [Math.cbrt(40), Math.cbrt(40), Math.cbrt(40)],
-              [Math.sqrt(40) / 2, Math.sqrt(40) / 2, 1],
-            ]}
-          />
-          <AnimBox
-            boxPositionCoords={[
-              [1 * 5, 0, 0],
-              [1 * 5.5, 0, 0],
-            ]}
-            colour={["#e45858", "#6246ea"]}
-            boxScale={[
-              [Math.cbrt(90), Math.cbrt(90), Math.cbrt(90)],
-              [Math.sqrt(90) / 2, Math.sqrt(90) / 2, 1],
-            ]}
-          />
-          <AnimBox
-            boxPositionCoords={[
-              [2 * 5, 0, 0],
-              [2 * 5.5, 0, 0],
-            ]}
-            colour={["#e45858", "#6246ea"]}
-            boxScale={[
-              [Math.cbrt(1), Math.cbrt(1), Math.cbrt(1)],
-              [Math.sqrt(1) / 2, Math.sqrt(1) / 2, 1],
-            ]}
-          />
+
+          {segmentArray.map((segment, index) => {
+            return (
+              <AnimBox
+                key={index}
+                boxPositionCoords={[
+                  [index * 5, 0, 0],
+                  [index * 5, 0, 0],
+                ]}
+                colour={[segment.segmentColour, segment.segmentColour]}
+                boxScale={[
+                  [
+                    Math.cbrt(segment.percentageNum),
+                    Math.cbrt(segment.percentageNum),
+                    Math.cbrt(segment.percentageNum),
+                  ],
+                  [
+                    Math.sqrt(segment.percentageNum) / 2,
+                    Math.sqrt(segment.percentageNum) / 2,
+                    1,
+                  ],
+                ]}
+                text1Content={String(index + 1)}
+                text2Content={String(segment.percentageNum)}
+              />
+            );
+          })}
         </Canvas>
       </div>
     </div>
