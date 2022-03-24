@@ -45,7 +45,7 @@ function AnimShowCanvas({ segmentArray }) {
             ]}
           /> */}
           <AnimBox
-            positionCoords={[
+            boxPositionCoords={[
               [0 * 5, 0, 0],
               [0 * 5.5, 0, 0],
             ]}
@@ -53,6 +53,28 @@ function AnimShowCanvas({ segmentArray }) {
             boxScale={[
               [Math.cbrt(40), Math.cbrt(40), Math.cbrt(40)],
               [Math.sqrt(40) / 2, Math.sqrt(40) / 2, 1],
+            ]}
+          />
+          <AnimBox
+            boxPositionCoords={[
+              [1 * 5, 0, 0],
+              [1 * 5.5, 0, 0],
+            ]}
+            colour={["#e45858", "#6246ea"]}
+            boxScale={[
+              [Math.cbrt(90), Math.cbrt(90), Math.cbrt(90)],
+              [Math.sqrt(90) / 2, Math.sqrt(90) / 2, 1],
+            ]}
+          />
+          <AnimBox
+            boxPositionCoords={[
+              [2 * 5, 0, 0],
+              [2 * 5.5, 0, 0],
+            ]}
+            colour={["#e45858", "#6246ea"]}
+            boxScale={[
+              [Math.cbrt(1), Math.cbrt(1), Math.cbrt(1)],
+              [Math.sqrt(1) / 2, Math.sqrt(1) / 2, 1],
             ]}
           />
         </Canvas>
