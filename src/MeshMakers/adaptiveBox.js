@@ -3,7 +3,7 @@ import { useFrame } from "@react-three/fiber";
 import { Text } from "@react-three/drei";
 import { useSpring, animated, config } from "@react-spring/three";
 
-function AnimBox(props) {
+function AdaptiveBox(props) {
   const myMesh = React.useRef();
   const [modeSelected, setModeSelected] = useState("3D");
   const [inIntro, setInIntro] = useState(true);
@@ -14,27 +14,14 @@ function AnimBox(props) {
     }, 900);
   }, []);
 
-  function switchModeSelected(event) {
-    setModeSelected((currentModeSelected) => {
-      if (currentModeSelected === "3D") {
-        event.target.className = "Switch_Mode_Button__2_5D";
-        return "2.5D";
-      } else if (currentModeSelected === "2.5D") {
-        event.target.className = "Switch_Mode_Button__3D";
-        return "3D";
-      }
-    });
-  }
-
   const spring = useSpring({
-    scale: modeSelected === "3D" ? props.boxScale[0] : props.boxScale[1],
-    boxPosition:
-      modeSelected === "3D"
-        ? props.boxPositionCoords[0]
-        : props.boxPositionCoords[1],
-    color: modeSelected === "3D" ? props.colour[0] : props.colour[1],
-    opacity: modeSelected === "3D" ? 1 : 0.1,
-    config: config.wobbly,
+    scale: props.in3DMode ? props.boxScale[0] : props.boxScale[1],
+    boxPosition: props.in3DMode
+      ? props.boxPositionCoords[0]
+      : props.boxPositionCoords[1],
+    color: props.in3DMode ? props.colour[0] : props.colour[1],
+    opacity: props.in3DMode ? 1 : 0.1,
+    config: config.default,
   });
 
   const spawnSpring = useSpring({
@@ -72,27 +59,26 @@ function AnimBox(props) {
       ref={myMesh}
       position={spring.boxPosition}
       scale={getCurrentSpring().scale}
-      onClick={switchModeSelected}
     >
-      <boxGeometry onClick={switchModeSelected} />
+      <boxGeometry />
       <animated.meshLambertMaterial
         opacity={spring.opacity}
         color={spring.color}
       />
 
       <Text
-        onClick={switchModeSelected}
         scale={[1.5, 1.5, 1.5]}
         color="black" // default
         position={[0, 0.05, 0.6]}
+        font="Rebond Grotesque"
       >
         {"Metric " + props.text1Content}
       </Text>
       <Text
-        onClick={switchModeSelected}
         scale={[1.5, 1.5, 1.5]}
         color="black" // default
         position={[0, -0.1, 0.6]}
+        font="Rebond Grotesque"
       >
         {props.text2Content + "%"}
       </Text>
@@ -100,4 +86,4 @@ function AnimBox(props) {
   );
 }
 
-export default AnimBox;
+export default AdaptiveBox;

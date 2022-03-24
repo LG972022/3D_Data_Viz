@@ -3,17 +3,24 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Text, PerspectiveCamera } from "@react-three/drei";
 import { useSpring, animated, config } from "@react-spring/three";
 
-import AnimBox from "../MeshMakers/adaptiveBox";
+import AdaptiveBox from "../MeshMakers/adaptiveBox";
 
 function AnimShowCanvas({ segmentArray }) {
-  const [in3DMode, setIn3DMode] = useState("3D");
+  const [in3DMode, setIn3DMode] = useState(true);
 
-  console.log(segmentArray);
+  console.log(in3DMode);
+
+  function toggleIn3DMode() {
+    setIn3DMode(!in3DMode);
+  }
 
   return (
     <div className="Canvas_Container">
       <div className="Canvas_Background">
-        <button>Press Me</button>
+        <button className="Switch_Mode_Button__3D" onClick={toggleIn3DMode}>
+          {in3DMode ? "Switch to 2.5D Mode" : "Switch to 3D Mode"}
+        </button>
+
         <Canvas style={{ width: "45vw", height: "50vh" }}>
           {/* /////////////////////////////////////////////////////////////// */}
 
@@ -29,7 +36,7 @@ function AnimShowCanvas({ segmentArray }) {
 
           {segmentArray.map((segment, index) => {
             return (
-              <AnimBox
+              <AdaptiveBox
                 key={index}
                 boxPositionCoords={[
                   [index * 5, 0, 0],
@@ -50,6 +57,7 @@ function AnimShowCanvas({ segmentArray }) {
                 ]}
                 text1Content={String(index + 1)}
                 text2Content={String(segment.percentageNum)}
+                in3DMode={in3DMode}
               />
             );
           })}

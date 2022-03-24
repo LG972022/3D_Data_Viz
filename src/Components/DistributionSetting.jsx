@@ -95,19 +95,22 @@ function DistributionSetting() {
   return (
     <>
       <div className="distributionSetting">
-        <p>Total: {checkCurrentTotal()}</p>
+        <div className="distributionSetting__Total__Add__Container">
+          <p className="distributionSetting__Total__Add__Container__Current_Total">
+            Total: {checkCurrentTotal()}
+          </p>
+          <button
+            className={generateClassName__AddSegmentButton()}
+            onClick={() => {
+              addToFormArr({ distValue: 100 });
+            }}
+          >
+            Add New Segment
+          </button>
+        </div>
         {totalWillExceedWarning === true && (
           <p>Total Percentage Must Not Exceed 100%</p>
         )}
-
-        <button
-          className={generateClassName__AddSegmentButton()}
-          onClick={() => {
-            addToFormArr({ distValue: 100 });
-          }}
-        >
-          Add New Segment
-        </button>
         {formArray.map((segment, index) => {
           return (
             <div className="segment_form__container" key={index}>

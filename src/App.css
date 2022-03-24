@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  font-family: Rebond Grotesque Normal;
 }
 
 .App-logo {
@@ -36,6 +37,53 @@
   margin-bottom: 1cm;
 }
 
+.distributionSetting__Total__Add__Container {
+  display: flex;
+  justify-content: center;
+  max-height: 70px;
+  margin-bottom: 25px;
+  font-size: 16px;
+}
+
+.distributionSetting__Total__Add__Container__Current_Total {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-right: 5px;
+  background-color: #98eccc; /* Hyper Green */
+  color: black;
+  border-color: #000000;
+  border: 2px solid;
+  padding: 15px 25px;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  max-height: fit-content;
+}
+
+.Add_Segment_Button {
+  background-color: #98eccc; /* Hyper Green */
+  color: black;
+  border-color: #000000;
+  padding: 15px 25px;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.Add_Segment_Button__Suspended {
+  background-color: #98eccc; /* Hyper Green */
+  color: black;
+  border-color: #000000;
+  padding: 15px 25px;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  opacity: 30%;
+}
+
 .legend {
   margin-top: 2px;
   display: flex;
@@ -59,15 +107,6 @@
   margin-right: 0.08cm;
 }
 
-.Add_Segment_Button {
-  margin-bottom: 25px;
-}
-
-.Add_Segment_Button__Suspended {
-  margin-bottom: 25px;
-  opacity: 30%;
-}
-
 .segment_form {
   margin-right: 10px;
   font-size: 15px;
@@ -84,22 +123,45 @@
   display: flex;
   margin-bottom: 20px;
   background-color: #3a76dd;
+  border: 2px solid;
+  border-color: #000000;
   padding: 20px;
-  border-radius: 15px;
+  border-radius: 7px;
 }
 
 .segment_form__color_Picker {
   max-height: 22px;
+  border-color: #000000;
+  border-radius: 5px;
+  background-color: aliceblue;
 }
 
 .segment_form__Delete_Button {
   max-height: 22px;
   margin-right: 5px;
+  background-color: #98eccc; /* Hyper Green */
+  border-radius: 3px;
+  color: black;
+  border-color: #000000;
+  padding: 2px 14px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
 }
 
 .segment_form__Delete_Button__Suspended {
   max-height: 22px;
   margin-right: 5px;
+  background-color: #98eccc; /* Hyper Green */
+  border-radius: 3px;
+  color: black;
+  border-color: #000000;
+  padding: 2px 14px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
   opacity: 30%;
 }
 
@@ -112,10 +174,22 @@
 
 .segment_form__Submit {
   margin-left: 10px;
+  max-height: 22px;
+  background-color: #ff5ca4; /* Hyper Pink */
+  border-radius: 3px;
+  color: aliceblue;
+  border-color: #000000;
+  padding: 2px 14px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
 }
 
 .segment_form__Input {
   margin-right: 10px;
+  border-color: #000000;
+  border-radius: 3px;
 }
 
 .segment_form__Input__USED {
@@ -125,11 +199,15 @@
 .Switch_Mode_Button__3D {
   background-color: rgb(152, 236, 204);
   margin-bottom: 10pt;
+  border-color: #000000;
+  border-radius: 3px;
 }
 
 .Switch_Mode_Button__2_5D {
   background-color: rgb(256, 92, 164);
   margin-bottom: 10pt;
+  border-color: #000000;
+  border-radius: 3px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
