@@ -6,6 +6,7 @@ function DistributionSetting() {
   const [formArray, setFormArray] = useState([]);
   const [totalWillExceedWarning, setTotalWillExceedWarning] = useState(false);
   const [unsubmittedFormExists, setUnsubmittedFormExists] = useState(false);
+  const [hyperColour, setHyperColour] = useState("#3a76dd");
 
   function addToFormArr(thing) {
     if (unsubmittedFormExists === false) {
@@ -15,6 +16,15 @@ function DistributionSetting() {
         return updatedFormArr;
       });
       setUnsubmittedFormExists(true);
+      setHyperColour((currentHyperColour) => {
+        if (currentHyperColour === "#ff5ca4") {
+          return "#98eccc";
+        } else if (currentHyperColour === "#98eccc") {
+          return "#3a76dd";
+        } else if (currentHyperColour === "#3a76dd") {
+          return "#ff5ca4";
+        }
+      });
     }
   }
 
@@ -26,7 +36,7 @@ function DistributionSetting() {
     });
   }
 
-  function generateClassName__AddSegmentButton() {
+  function generateClassName__AddSegmentButton(input) {
     if (unsubmittedFormExists === true) {
       return "Add_Segment_Button__Suspended";
     } else if (unsubmittedFormExists === false) {
@@ -34,10 +44,12 @@ function DistributionSetting() {
     }
   }
 
-  function generateClassName__segment_form__Delete_Button() {
-    if (unsubmittedFormExists === true) {
+  function generateClassName__segment_form__Delete_Button(index) {
+    if (index === formArray.length - 1) {
+      return "segment_form__Delete_Button";
+    } else if (unsubmittedFormExists === true) {
       return "segment_form__Delete_Button__Suspended";
-    } else if (unsubmittedFormExists === false) {
+    } else {
       return "segment_form__Delete_Button";
     }
   }
@@ -54,6 +66,14 @@ function DistributionSetting() {
         updatedSegmentArr.splice(index, 1);
         return updatedSegmentArr;
       });
+    }
+    if (index === formArray.length - 1) {
+      setFormArray((currentFormArray) => {
+        const updatedFormArr = [...currentFormArray];
+        updatedFormArr.splice(index, 1);
+        return updatedFormArr;
+      });
+      setUnsubmittedFormExists(false);
     }
   }
 
@@ -83,13 +103,16 @@ function DistributionSetting() {
     }
   }
 
-  function getRandomColor() {
-    const letters = "0123456789ABCDEF";
-    let color = "#";
-    for (var i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
+  function setNextHyperColour() {
+    setHyperColour((currentHyperColour) => {
+      if (currentHyperColour === "#ff5ca4") {
+        return "#98eccc";
+      } else if (currentHyperColour === "#98eccc") {
+        return "#3a76dd";
+      } else if (currentHyperColour === "#3a76dd") {
+        return "#ff5ca4";
+      }
+    });
   }
 
   return (
@@ -113,48 +136,52 @@ function DistributionSetting() {
         )}
         {formArray.map((segment, index) => {
           return (
-            <div className="segment_form__container" key={index}>
-              <form
-                name="form"
-                onSubmit={handleSubmit}
-                className="segment_form"
-              >
+            <div key={index} className="segment_form__OUTER__container">
+              <div className="segment_form__container">
+                <form
+                  name="form"
+                  onSubmit={handleSubmit}
+                  className="segment_form"
+                >
+                  <label className="segment_form__Label">
+                    Metric Percentage {index + 1}
+                  </label>
+                  <input
+                    type="number"
+                    className="segment_form__Input"
+                    name="Metric_1"
+                    max={100}
+                    min={1}
+                  />
+                  <input
+                    type="color"
+                    className="segment_form__color_Picker"
+                    defaultValue={hyperColour}
+                  />
+                  <input
+                    type="submit"
+                    value="Submit"
+                    className="segment_form__Submit"
+                  />
+                </form>
+
                 <label className="segment_form__Label">
-                  Metric Percentage {index + 1}
+                  Percentage:
+                  {segmentArray[index] === undefined
+                    ? " TBC"
+                    : "  " + segmentArray[index].percentageNum + "%"}
                 </label>
-                <input
-                  type="number"
-                  className="segment_form__Input"
-                  name="Metric_1"
-                  max={100}
-                  min={1}
-                />
-                <input
-                  type="color"
-                  className="segment_form__color_Picker"
-                  defaultValue={getRandomColor()}
-                />
-                <input
-                  type="submit"
-                  value="Submit"
-                  className="segment_form__Submit"
-                />
-              </form>
+              </div>
               <button
                 onClick={() => {
                   removeFromAllArr(index);
                 }}
-                className={generateClassName__segment_form__Delete_Button()}
+                className={generateClassName__segment_form__Delete_Button(
+                  index
+                )}
               >
-                Delete Metric
+                X
               </button>
-
-              <label className="segment_form__Label">
-                Percentage:
-                {segmentArray[index] === undefined
-                  ? " TBC"
-                  : "  " + segmentArray[index].percentageNum + "%"}
-              </label>
             </div>
           );
         })}

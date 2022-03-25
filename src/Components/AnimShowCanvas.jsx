@@ -8,8 +8,6 @@ import AdaptiveBox from "../MeshMakers/adaptiveBox";
 function AnimShowCanvas({ segmentArray }) {
   const [in3DMode, setIn3DMode] = useState(true);
 
-  console.log(in3DMode);
-
   function toggleIn3DMode() {
     setIn3DMode(!in3DMode);
   }
@@ -24,11 +22,14 @@ function AnimShowCanvas({ segmentArray }) {
         <Canvas style={{ width: "45vw", height: "50vh" }}>
           {/* /////////////////////////////////////////////////////////////// */}
 
-          <PerspectiveCamera makeDefault position={[-1, 1, 15]} />
+          <PerspectiveCamera makeDefault position={[-1, 0, 15]} />
+
           <OrbitControls
+            panSpeed={1}
             enablePan={true}
             enableZoom={true}
             enableRotate={true}
+            rotateSpeed={0.7}
           />
           <ambientLight />
           <pointLight position={[10, 10, 10]} />

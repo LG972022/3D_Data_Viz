@@ -21,11 +21,11 @@ function AdaptiveBox(props) {
       : props.boxPositionCoords[1],
     color: props.in3DMode ? props.colour[0] : props.colour[1],
     opacity: props.in3DMode ? 1 : 0.1,
-    config: config.default,
+    config: config.wobbly,
   });
 
   const spawnSpring = useSpring({
-    to: { scale: props.boxScale[0] },
+    to: { scale: props.in3DMode ? props.boxScale[0] : props.boxScale[1] },
     from: { scale: [0, 0, 0] },
     config: config.wobbly,
   });
@@ -70,7 +70,6 @@ function AdaptiveBox(props) {
         scale={[1.5, 1.5, 1.5]}
         color="black" // default
         position={[0, 0.05, 0.6]}
-        font="Rebond Grotesque"
       >
         {"Metric " + props.text1Content}
       </Text>
@@ -78,7 +77,6 @@ function AdaptiveBox(props) {
         scale={[1.5, 1.5, 1.5]}
         color="black" // default
         position={[0, -0.1, 0.6]}
-        font="Rebond Grotesque"
       >
         {props.text2Content + "%"}
       </Text>

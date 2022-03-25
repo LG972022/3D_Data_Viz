@@ -33,6 +33,7 @@
 }
 
 .distributionSetting {
+  margin-top: 30px;
   color: #000000;
   margin-bottom: 1cm;
 }
@@ -63,6 +64,17 @@
 
 .Add_Segment_Button {
   background-color: #98eccc; /* Hyper Green */
+  color: black;
+  border-color: #000000;
+  padding: 15px 25px;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.Add_Segment_Button:hover {
+  background-color: #8adabc; /* Hyper Green Dark */
   color: black;
   border-color: #000000;
   padding: 15px 25px;
@@ -117,6 +129,7 @@
   font-size: 15px;
   pointer-events: none;
   opacity: 30%;
+  margin-left: 10px;
 }
 
 .segment_form__container {
@@ -129,6 +142,10 @@
   border-radius: 7px;
 }
 
+.segment_form__OUTER__container {
+  display: flex;
+}
+
 .segment_form__color_Picker {
   max-height: 22px;
   border-color: #000000;
@@ -139,30 +156,47 @@
 .segment_form__Delete_Button {
   max-height: 22px;
   margin-right: 5px;
+  margin-top: -8.5px;
+  margin-left: -17px;
   background-color: #98eccc; /* Hyper Green */
-  border-radius: 3px;
+  border-radius: 80%;
   color: black;
   border-color: #000000;
-  padding: 2px 14px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 14px;
+  font-size: 15px;
+}
+
+.segment_form__Delete_Button:hover {
+  max-height: 22px;
+  margin-right: 5px;
+  margin-top: -8.5px;
+  margin-left: -17px;
+  background-color: #8adabc; /* Hyper Green Dark */
+  border-radius: 80%;
+  color: black;
+  border-color: #000000;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
 }
 
 .segment_form__Delete_Button__Suspended {
   max-height: 22px;
   margin-right: 5px;
+  margin-top: -8.5px;
+  margin-left: -17px;
   background-color: #98eccc; /* Hyper Green */
-  border-radius: 3px;
+  border-radius: 80%;
   color: black;
   border-color: #000000;
-  padding: 2px 14px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 14px;
-  opacity: 30%;
+  font-size: 15px;
+  opacity: 50%;
 }
 
 .segment_form__Label {
@@ -176,6 +210,20 @@
   margin-left: 10px;
   max-height: 22px;
   background-color: #ff5ca4; /* Hyper Pink */
+  border-radius: 3px;
+  color: aliceblue;
+  border-color: #000000;
+  padding: 2px 14px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+}
+
+.segment_form__Submit:hover {
+  margin-left: 10px;
+  max-height: 22px;
+  background-color: #e65194; /* Hyper Pink */
   border-radius: 3px;
   color: aliceblue;
   border-color: #000000;
@@ -203,8 +251,22 @@
   border-radius: 3px;
 }
 
+.Switch_Mode_Button__3D:hover {
+  background-color: #8adabc;
+  margin-bottom: 10pt;
+  border-color: #000000;
+  border-radius: 3px;
+}
+
 .Switch_Mode_Button__2_5D {
   background-color: rgb(256, 92, 164);
+  margin-bottom: 10pt;
+  border-color: #000000;
+  border-radius: 3px;
+}
+
+.Switch_Mode_Button__2_5D:hover {
+  background-color: #8adabc;
   margin-bottom: 10pt;
   border-color: #000000;
   border-radius: 3px;
