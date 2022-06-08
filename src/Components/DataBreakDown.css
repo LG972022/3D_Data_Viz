@@ -1,0 +1,13 @@
+.Data_Break_Down_Container {
+    margin-bottom: 10px;
+    background-color: #3a76dd;
+    color: rgb(255, 255, 255);
+    border-color: #000000;
+    padding: 15px 25px;
+    border: 2px solid #000000;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    width: 40%;
+}

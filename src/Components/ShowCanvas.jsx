@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Text, PerspectiveCamera } from "@react-three/drei";
 import { useSpring, animated } from "@react-spring/three";

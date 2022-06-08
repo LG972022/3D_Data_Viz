@@ -1,18 +1,18 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import AnimShowCanvas from "./AnimShowCanvas";
 
-function DistributionSetting() {
+function DistributionSetting({ setMainMenuSelection }) {
   const [segmentArray, setSegmentArray] = useState([]);
   const [formArray, setFormArray] = useState([]);
   const [totalWillExceedWarning, setTotalWillExceedWarning] = useState(false);
   const [unsubmittedFormExists, setUnsubmittedFormExists] = useState(false);
   const [hyperColour, setHyperColour] = useState("#3a76dd");
 
-  function addToFormArr(thing) {
+  function addToFormArr(form) {
     if (unsubmittedFormExists === false) {
       setFormArray((currentFormArray) => {
         const updatedFormArr = [...currentFormArray];
-        updatedFormArr.push(thing);
+        updatedFormArr.push(form);
         return updatedFormArr;
       });
       setUnsubmittedFormExists(true);
@@ -117,7 +117,15 @@ function DistributionSetting() {
 
   return (
     <>
-      <div className="distributionSetting">
+      <div className="segment_form">
+        <button
+          onClick={() => {
+            setMainMenuSelection(0);
+          }}
+          className="Quit_To_Main_Menu_Button"
+        >
+          Return to Main Menu
+        </button>
         <div className="distributionSetting__Total__Add__Container">
           <p className="distributionSetting__Total__Add__Container__Current_Total">
             Total: {checkCurrentTotal()}
@@ -125,7 +133,7 @@ function DistributionSetting() {
           <button
             className={generateClassName__AddSegmentButton()}
             onClick={() => {
-              addToFormArr({ distValue: 100 });
+              addToFormArr({});
             }}
           >
             Add New Segment
@@ -194,12 +202,3 @@ function DistributionSetting() {
 }
 
 export default DistributionSetting;
-
-// setTotal((currentTotal) => {
-//       let totalVar = 0;
-//       for (let x = 0; x < segmentArray.length; x++) {
-//         totalVar += segmentArray[x];
-//         console.log(totalVar);
-//       }
-//       // console.log(totalVar);
-//       return totalVar;
