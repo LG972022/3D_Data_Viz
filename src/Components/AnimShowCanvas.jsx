@@ -1,9 +1,8 @@
+import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
+import { Canvas } from "@react-three/fiber";
 import React, { useState } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, Text, PerspectiveCamera } from "@react-three/drei";
-import { useSpring, animated, config } from "@react-spring/three";
-
 import AdaptiveBox from "../MeshMakers/adaptiveBox";
+import "../Components/CSS_Files/AnimShowCanvas.css";
 
 function AnimShowCanvas({ segmentArray }) {
   const [in3DMode, setIn3DMode] = useState(true);
@@ -56,7 +55,7 @@ function AnimShowCanvas({ segmentArray }) {
                     1,
                   ],
                 ]}
-                text1Content={String(index + 1)}
+                text1Content={segment.segmentLabel}
                 text2Content={String(segment.percentageNum)}
                 in3DMode={in3DMode}
               />

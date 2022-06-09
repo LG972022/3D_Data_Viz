@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import AnimShowCanvas from "./AnimShowCanvas";
+import "../Components/CSS_Files/DistributionSetting.css";
 
 function DistributionSetting({ setMainMenuSelection }) {
   const [segmentArray, setSegmentArray] = useState([]);
@@ -98,21 +99,10 @@ function DistributionSetting({ setMainMenuSelection }) {
       addToSegmentArray({
         percentageNum: Number(event.target[0].value),
         segmentColour: event.target[1].value,
+        segmentLabel: "Custom Metric",
       });
       setUnsubmittedFormExists(false);
     }
-  }
-
-  function setNextHyperColour() {
-    setHyperColour((currentHyperColour) => {
-      if (currentHyperColour === "#ff5ca4") {
-        return "#98eccc";
-      } else if (currentHyperColour === "#98eccc") {
-        return "#3a76dd";
-      } else if (currentHyperColour === "#3a76dd") {
-        return "#ff5ca4";
-      }
-    });
   }
 
   return (
@@ -195,7 +185,9 @@ function DistributionSetting({ setMainMenuSelection }) {
         })}
       </div>
       <div>
-        <AnimShowCanvas segmentArray={segmentArray} />
+        <React.Suspense fallback={<div>Loading... </div>}>
+          <AnimShowCanvas segmentArray={segmentArray} />
+        </React.Suspense>
       </div>
     </>
   );

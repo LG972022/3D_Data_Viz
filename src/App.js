@@ -1,13 +1,12 @@
-import logo from "./logo.svg";
 import React, { useState } from "react";
 import "./App.css";
 import DistributionSetting from "./Components/DistributionSetting";
-import MainMenu from "./Components/MainMenu";
-import MeteorData from "./Components/MeteorData";
+import { MainMenu } from "./Components/MainMenu";
+import { MeteorData } from "./Components/MeteorData";
+import { NYTData } from "./Components/NYTData";
 
 function App() {
   const [mainMenuSelection, setMainMenuSelection] = useState(0);
-
   if (mainMenuSelection === 0) {
     return (
       <div className="App">
@@ -21,6 +20,15 @@ function App() {
     return (
       <div className="App">
         <header className="App-header">
+          <NYTData setMainMenuSelection={setMainMenuSelection} />
+        </header>
+      </div>
+    );
+  }
+  if (mainMenuSelection === 2) {
+    return (
+      <div className="App">
+        <header className="App-header">
           <MeteorData setMainMenuSelection={setMainMenuSelection} />
         </header>
       </div>
@@ -29,9 +37,7 @@ function App() {
     return (
       <div className="App">
         <header className="App-header">
-          <React.Suspense fallback={<div>Loading... </div>}>
-            <DistributionSetting setMainMenuSelection={setMainMenuSelection} />
-          </React.Suspense>
+          <DistributionSetting setMainMenuSelection={setMainMenuSelection} />
         </header>
       </div>
     );

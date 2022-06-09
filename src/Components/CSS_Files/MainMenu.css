@@ -1,0 +1,26 @@
+.Main_Menu_Button {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    color: whitesmoke;
+    background-color: #3a76dd;  
+}
+
+.Main_Menu_Button:hover {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    color: whitesmoke;
+    background-color: #3061b6;
+}
+
+.MainMenu_Container {
+    background-color: #b3b3b3;
+    padding-bottom: 35px;
+    padding-left: 35px;
+    padding-right: 35px;
+    border-radius: 10px;
+    border: 2px solid #000000;
+}

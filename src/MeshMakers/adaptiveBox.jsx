@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { useFrame } from "@react-three/fiber";
+import { animated, config, useSpring } from "@react-spring/three";
 import { Text } from "@react-three/drei";
-import { useSpring, animated, config } from "@react-spring/three";
+import React, { useEffect, useState } from "react";
 
 function AdaptiveBox(props) {
   const myMesh = React.useRef();
-  const [modeSelected, setModeSelected] = useState("3D");
   const [inIntro, setInIntro] = useState(true);
 
   useEffect(() => {
@@ -71,7 +69,7 @@ function AdaptiveBox(props) {
         color="black" // default
         position={[0, 0.05, 0.6]}
       >
-        {"Metric " + props.text1Content}
+        {props.text1Content}
       </Text>
       <Text
         scale={[1.5, 1.5, 1.5]}
