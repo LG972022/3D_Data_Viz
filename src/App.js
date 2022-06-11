@@ -6,6 +6,7 @@ import { MeteorData } from "./Components/MeteorData";
 import { NYTData } from "./Components/NYTData";
 
 function App() {
+  // Conditionally Renders Components based on state value (changed by selection in main menu and using return to main menu button)
   const [mainMenuSelection, setMainMenuSelection] = useState(0);
   if (mainMenuSelection === 0) {
     return (

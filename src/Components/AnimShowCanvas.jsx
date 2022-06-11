@@ -19,8 +19,6 @@ function AnimShowCanvas({ segmentArray }) {
         </button>
 
         <Canvas style={{ width: "45vw", height: "50vh" }}>
-          {/* /////////////////////////////////////////////////////////////// */}
-
           <PerspectiveCamera makeDefault position={[-1, 0, 15]} />
 
           <OrbitControls

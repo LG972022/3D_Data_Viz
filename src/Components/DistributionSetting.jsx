@@ -9,6 +9,7 @@ function DistributionSetting({ setMainMenuSelection }) {
   const [unsubmittedFormExists, setUnsubmittedFormExists] = useState(false);
   const [hyperColour, setHyperColour] = useState("#3a76dd");
 
+  // Adds an object to form array, if no unsubmitted forms exist, and then updates default colour picker colour
   function addToFormArr(form) {
     if (unsubmittedFormExists === false) {
       setFormArray((currentFormArray) => {
@@ -29,6 +30,7 @@ function DistributionSetting({ setMainMenuSelection }) {
     }
   }
 
+  // Adds object to segment array
   function addToSegmentArray(segment) {
     setSegmentArray((currentSegmentArray) => {
       const updatedSegmentArr = [...currentSegmentArray];
@@ -37,6 +39,7 @@ function DistributionSetting({ setMainMenuSelection }) {
     });
   }
 
+  // Returns a class name to be used, based on if an unsubmitted form exists
   function generateClassName__AddSegmentButton(input) {
     if (unsubmittedFormExists === true) {
       return "Add_Segment_Button__Suspended";
@@ -45,6 +48,7 @@ function DistributionSetting({ setMainMenuSelection }) {
     }
   }
 
+  // Returns a class name to be used, based on form array
   function generateClassName__segment_form__Delete_Button(index) {
     if (index === formArray.length - 1) {
       return "segment_form__Delete_Button";
@@ -55,6 +59,7 @@ function DistributionSetting({ setMainMenuSelection }) {
     }
   }
 
+  // Removes elements from form array and segment array and updates states to reflect
   function removeFromAllArr(index) {
     if (unsubmittedFormExists === false) {
       setFormArray((currentFormArray) => {
@@ -78,6 +83,7 @@ function DistributionSetting({ setMainMenuSelection }) {
     }
   }
 
+  // Returns combined total of submitted form percentages
   function checkCurrentTotal() {
     let totalVar = 0;
     for (let x = 0; x < segmentArray.length; x++) {
@@ -86,6 +92,7 @@ function DistributionSetting({ setMainMenuSelection }) {
     return totalVar;
   }
 
+  // checks percentage total will not be exceeded and adds form contents to segment array
   function handleSubmit(event) {
     event.preventDefault();
     if (Number(event.target[0].value) === 0) {

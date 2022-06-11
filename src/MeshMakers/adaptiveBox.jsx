@@ -36,22 +36,6 @@ function AdaptiveBox(props) {
     }
   }
 
-  // return (
-  //   <mesh
-  //     position={props.positionCoords[0]}
-  //     scale={props.boxScale[0]}
-  //     rotation={[0, 0, 0]}
-  //     ref={myMesh}
-  //     onClick={() => {
-  //       console.log("click");
-  //       setActive(!active);
-  //     }}
-  //   >
-  //     <boxGeometry />
-  //     <meshLambertMaterial color={props.colour[0]} transparent opacity={0.7} />
-  //   </mesh>
-  // );
-
   return (
     <animated.mesh
       ref={myMesh}
