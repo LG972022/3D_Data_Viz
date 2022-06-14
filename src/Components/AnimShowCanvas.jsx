@@ -1,7 +1,7 @@
 import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import React, { useState } from "react";
-import AdaptiveBox from "../MeshMakers/adaptiveBox";
+import AdaptiveBox from "../MeshMakers/AdaptiveBox";
 import "../Components/CSS_Files/AnimShowCanvas.css";
 
 function AnimShowCanvas({ segmentArray }) {
