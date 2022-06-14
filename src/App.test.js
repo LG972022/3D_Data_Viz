@@ -340,9 +340,3 @@ describe("createBreakdownOfMetorData -- Function Tests", () => {
     }
   });
 });
-
-describe("Distibution Setting Functions", () => {
-  test("Check the thing is a thing", () => {
-    expect(1).toBe(1);
-  });
-});
